@@ -5,4 +5,8 @@ Input:
 Output
 - Either
     - An expression
-    - The group of ones that can be formed
+    - The group of 
+    ones that can be formed
+
+Note: We are not considering dont cares for now.
+We can anyways add it later if our current program is running well.
