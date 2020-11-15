@@ -5,10 +5,6 @@ using namespace std;
 int main(){
     int num;
     vector<int> testV;
-    while (cin>>num)
-    {
-        testV.push_back(num);
-    }
-    for(int i : testV)
-    cout<<i<<" ";
+    testV[0] = 9;
+    cout<<testV[0];
 }
