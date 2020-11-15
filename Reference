@@ -1,0 +1,8 @@
+Input: 
+- Position of 1s
+- Position of 0s
+
+Output
+- Either
+    - An expression
+    - The group of ones that can be formed
