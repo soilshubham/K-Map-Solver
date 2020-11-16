@@ -50,6 +50,7 @@ int main(){
         KMap1[stoi(getIndex[input])/10][stoi(getIndex[input])%10] = 1;
     }
 
+    //Output of initial array
     for(int i=0; i<4; i++){
         for (int j = 0; j < 4; j++)
         {
