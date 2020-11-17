@@ -59,3 +59,24 @@ int main(){
         std::cout<<std::endl;
     }
 }
+
+//code for counting 16 one's
+int x[4][4] = {{0,1,0,0}, {1,1,1,1}, {0,1,0,1},{0,1,1,0}}; 
+    int count_16 = 0,flag=1;
+    // output each array element's value 
+    for (int i = 0; i < 4; i++) 
+    { 
+        for (int j = 0; j < 4; j++) 
+        { 
+            
+            if(x[i][j]==1) count_16++;
+            else{
+                flag=0;
+                break;
+            }
+            
+        } 
+        if(flag==0) break;
+    } 
+    
+    return 0; 
