@@ -178,17 +178,14 @@ void g4(int a[][4], std::vector<std::vector<int>>* grp4){
                     grp.push_back(10*((i+1)%4) + ((j+1)%4));
                     grp4->push_back(grp);
                     grp.clear();
-                    flag = 0;
-                    break;
                 }
-                else flag=0;
             }
         }
     }
     
     //grp vertical line
-    for (int i=0; i<4 ; i++){
-        for (int j=0; j<4; j++){
+    for (int j=0; j<4 ; j++){
+        for (int i=0; i<4; i++){
             if (a[i][j]==1) {
                 if (a[i%4][(j)%4]==1 and a[(i+1)%4][(j)%4]==1 and a[(i+2)%4][(j)%4]==1 and a[(i+3)%4][(j)%4]==1) {
                     grp.push_back(10*((i)%4) + ((j)%4));
@@ -197,10 +194,8 @@ void g4(int a[][4], std::vector<std::vector<int>>* grp4){
                     grp.push_back(10*((i+3)%4) + ((j)%4));
                     grp4->push_back(grp);
                     grp.clear();
-                    flag = 0;
                     break;
                 }
-                else flag=0;
             }
         }
     }
@@ -217,10 +212,8 @@ void g4(int a[][4], std::vector<std::vector<int>>* grp4){
                     grp.push_back(10*((i)%4) + ((j+3)%4));
                     grp4->push_back(grp);
                     grp.clear();
-                    flag = 0;
                     break;
                 }
-                else flag=0;
             }
         }
     }
