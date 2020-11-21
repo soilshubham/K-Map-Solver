@@ -3,7 +3,7 @@
 #include<vector>
 #include<map>
 
-void g8(int a[][4], std::vector<int>*, std::vector<int>*);
+void g8(int a[][4], std::vector<std::vector<int>>* grp8);
 
 struct kMap
 {
@@ -15,6 +15,8 @@ int main(){
 
     int KMap1[4][4];
     
+    std::vector<std::vector<int>> grp8;
+
     std::vector<int> grp8_i, grp8_j;
 
     //Sets all values of matrix 0
@@ -57,7 +59,7 @@ int main(){
         KMap1[stoi(getIndex[input])/10][stoi(getIndex[input])%10] = 1;
     }
 
-    g8(KMap1, &grp8_i, &grp8_j);
+    g8(KMap1, &grp8);
 
     //Output of initial array
     for(int i=0; i<4; i++){
@@ -69,24 +71,23 @@ int main(){
     }
 
     std::cout<<"Group of 8 starts at index:\n";
-    for (int i : grp8_i)
+    for (std::vector<int> i : grp8)
     {
-        std::cout<<i<<"["<<i/10<<", "<<i%10<<"]"<<std::endl;
-    }
-
-    for (int i : grp8_j)
-    {
-        std::cout<<i<<"["<<i/10<<", "<<i%10<<"]"<<std::endl;
+        for(int j : i){
+            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
+        }
+        std::cout<<"\n";
     }
     
 
 }
 
 
-void g8(int a[][4], std::vector<int>* b, std::vector<int>* c){
+void g8(int a[][4], std::vector<std::vector<int>>* grp8){
 
     int flag = 0;
-    
+    std::vector<int> grp;
+
     //grp i
     for (int i=0; i<4 ; i++){
         for (int j=0; j<4; j++){
@@ -100,7 +101,18 @@ void g8(int a[][4], std::vector<int>* b, std::vector<int>* c){
                 }
             }
             if (flag == 3){
-                b->push_back(10*i + abs(j - 2)%4);
+                grp.push_back(10*(i%4) + abs(j - 2)%4);
+                grp.push_back(10*(i%4) + abs((j+1) - 2)%4);
+                grp.push_back(10*(i%4) + abs((j+2) - 2)%4);
+                grp.push_back(10*(i%4) + abs((j+3) - 2)%4);
+
+                grp.push_back(10*((i+1)%4) + abs(j - 2)%4);
+                grp.push_back(10*((i+1)%4) + abs(j+1 - 2)%4);
+                grp.push_back(10*((i+1)%4) + abs(j+2 - 2)%4);
+                grp.push_back(10*((i+1)%4) + abs(j+3 - 2)%4);
+
+                grp8->push_back(grp);
+                grp.clear();
                 flag = 0;
                 break;
             }
@@ -120,7 +132,18 @@ void g8(int a[][4], std::vector<int>* b, std::vector<int>* c){
                 }
             }
             if (flag == 3){
-                c->push_back(10*(abs(i - 2)%4) + j);
+                grp.push_back(10*((i- 2)%4) + abs(j)%4);
+                grp.push_back(10*((i+1- 2)%4) + abs(j)%4);
+                grp.push_back(10*((i+2- 2)%4) + abs(j)%4);
+                grp.push_back(10*((i+3- 2)%4) + abs(j)%4);
+
+                grp.push_back(10*((i- 2)%4) + abs((j+1))%4);
+                grp.push_back(10*((i+1- 2)%4) + abs((j+1))%4);
+                grp.push_back(10*((i+2- 2)%4) + abs((j+1))%4);
+                grp.push_back(10*((i+3- 2)%4) + abs((j+1))%4);
+
+                grp8->push_back(grp);
+                grp.clear();
                 flag = 0;
                 break;
             }
