@@ -121,43 +121,20 @@ void g4(int* a[], vector<int>* b, vector<int>* c){
 
 void g2(int* a[], vector<int>* b, vector<int>* c){
 
-    int flag = 0;
-    
-
-    //grp i
     for (int i=0; i<4 ; i++){
-        for (int j=0; j<4; j++){
-            if (a[i][j]==1) {
-                if (a[i%4][(j+1)%4]==1 or a[(i+1)%4][j%4]==1 ) {
-                    flag++;
+            for (int j=0; j<4; j++){
+                if (a[i][j]==1) {
+                    if (a[i%4][(j+1)%4]==1) {
+                        cout<<"it works for 2_i"<<endl;
+                    }
+                    if (a[(i+1)%4][j%4]==1 ) {
+                        cout<<"it works for 2_j"<<endl;
+                    }
                 }
-                else flag=0;
-            }
-            if (flag == 1){
-                b->push_back(10*i + j);
-                flag = 0;
-                break;
             }
         }
     }
 
-    //grp8 j
-    for (int j=0; j<4 ; j++){
-        for (int i=0; i<4; i++){
-            if (a[i][j]==1) {
-                if (a[i%4][(j+1)%4]==1 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1) {
-                    flag++;
-                }
-                else flag=0;
-            }
-            if (flag == 1){
-                c->push_back(10*i + j);
-                flag = 0;
-                break;
-            }
-        }
-    }
-}
 
 
 
