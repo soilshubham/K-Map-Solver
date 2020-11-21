@@ -17,7 +17,7 @@ int main(){
     
     std::vector<std::vector<int>> grp8;
 
-    // std::vector<int> grp8_i, grp8_j;
+    std::vector<int> grp8_i, grp8_j;
 
     //Sets all values of matrix 0
     for(int i=0; i<4; i++){
@@ -70,7 +70,7 @@ int main(){
         std::cout<<std::endl;
     }
 
-    std::cout<<"Group of 8 starts at index:\n";
+    std::cout<<"\nGroup of 8\n";
     for (std::vector<int> i : grp8)
     {
         for(int j : i){
@@ -78,7 +78,17 @@ int main(){
         }
         std::cout<<"\n";
     }
+    std::cout<<"\nGroup of 4\n";
+    for (std::vector<int> i : grp8)
+    {
+        for(int j : i){
+            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
+        }
+        std::cout<<"\n";
+    }
+
 }
+
 
 
 void g8(int a[][4], std::vector<std::vector<int>>* grp8){
@@ -149,24 +159,26 @@ void g8(int a[][4], std::vector<std::vector<int>>* grp8){
     }
 }
 
-void g4(int a[][4], std::vector<int>* b, std::vector<int>* c){
+void g4(int a[][4], std::vector<std::vector<int>>* grp4){
 
     int flag = 0;
-    
+    std::vector<int> grp;
 
     //grp square
     for (int i=0; i<4 ; i++){
         for (int j=0; j<4; j++){
             if (a[i][j]==1) {
                 if (a[i%4][(j+1)%4]==1 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1) {
-                    flag++;
+                    grp.push_back(10*(i%4) + (j%4));
+                    grp.push_back(10*((i)%4) + ((j+1)%4));
+                    grp.push_back(10*((i+1)%4) + ((j)%4));
+                    grp.push_back(10*((i+1)%4) + ((j+1)%4));
+                    grp4->push_back(grp);
+                    grp.clear();
+                    flag = 0;
+                    break;
                 }
                 else flag=0;
-            }
-            if (flag == 1){
-                b->push_back(10*i + j);
-                flag = 0;
-                break;
             }
         }
     }
@@ -175,89 +187,39 @@ void g4(int a[][4], std::vector<int>* b, std::vector<int>* c){
     for (int i=0; i<4 ; i++){
         for (int j=0; j<4; j++){
             if (a[i][j]==1) {
-                if (a[i%4][(j+1)%4]==1 or a[(i+1)%4][j%4]==1 ) {
-                    flag++;
+                if (a[i%4][(j)%4]==1 and a[(i+1)%4][(j)%4]==1 and a[(i+2)%4][(j)%4]==1 and a[(i+3)%4][(j)%4]==1) {
+                    grp.push_back(10*((i)%4) + ((j)%4));
+                    grp.push_back(10*((i+1)%4) + ((j)%4));
+                    grp.push_back(10*((i+2)%4) + ((j)%4));
+                    grp.push_back(10*((i+3)%4) + ((j)%4));
+                    grp4->push_back(grp);
+                    grp.clear();
+                    flag = 0;
+                    break;
                 }
                 else flag=0;
-            }
-            if (flag == 3){
-                b->push_back(10*i + j);
-                flag = 0;
-                break;
             }
         }
     }
     
     
     //grp horizontal line
-    for (int j=0; j<4 ; j++){
-        for (int i=0; i<4; i++){
+    for (int i=0; i<4 ; i++){
+        for (int j=0; j<4; j++){
             if (a[i][j]==1) {
-                if (a[i%4][(j+1)%4]==1 or a[(i+1)%4][j%4]==1 ) {
-                    flag++;
+                if (a[i%4][(j)%4]==1 and a[(i)%4][(j+1)%4]==1 and a[(i)%4][(j+2)%4]==1 and a[(i)%4][(j+3)%4]==1) {
+                    grp.push_back(10*((i)%4) + ((j)%4));
+                    grp.push_back(10*((i)%4) + ((j+1)%4));
+                    grp.push_back(10*((i)%4) + ((j+2)%4));
+                    grp.push_back(10*((i)%4) + ((j+3)%4));
+                    grp4->push_back(grp);
+                    grp.clear();
+                    flag = 0;
+                    break;
                 }
                 else flag=0;
-            }
-            if (flag == 3){
-                b->push_back(10*i + j);
-                flag = 0;
-                break;
             }
         }
     }
     
 }
-
-// for 4s
-    // if they r in square shape, the code is same as 8s but flag ==1 and we can use either grp_i or grp_j
-    // if they r in vertical line, the code is same as 2s but flag == 3 and i for loop is followed by j for loop
-    // if they r in vertical line, the code is same as 2s but flag == 3 and j for loop is followed by i for loop
-
-
-
-
-
-
-
-
-
-
-// void g2(int* a[], vector<int>* b, vector<int>* c){
-
-//     int flag = 0;
-    
-
-//     //grp i
-//     for (int i=0; i<4 ; i++){
-//         for (int j=0; j<4; j++){
-//             if (a[i][j]==1) {
-//                 if (a[i%4][(j+1)%4]==1 or a[(i+1)%4][j%4]==1 ) {
-//                     flag++;
-//                 }
-//                 else flag=0;
-//             }
-//             if (flag == 1){
-//                 b->push_back(10*i + j);
-//                 flag = 0;
-//                 break;
-//             }
-//         }
-//     }
-
-//     //grp8 j
-//     for (int j=0; j<4 ; j++){
-//         for (int i=0; i<4; i++){
-//             if (a[i][j]==1) {
-//                 if (a[i%4][(j+1)%4]==1 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1) {
-//                     flag++;
-//                 }
-//                 else flag=0;
-//             }
-//             if (flag == 1){
-//                 c->push_back(10*i + j);
-//                 flag = 0;
-//                 break;
-//             }
-//         }
-//     }
-// }

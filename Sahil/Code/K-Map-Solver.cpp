@@ -3,7 +3,8 @@
 #include<vector>
 #include<map>
 
-void g8(int a[][4], std::vector<std::vector<int>>* grp8);
+void g8(int a[][4], std::vector<std::vector<int>>*);
+void g4(int a[][4], std::vector<std::vector<int>>*);
 
 struct kMap
 {
@@ -15,7 +16,7 @@ int main(){
 
     int KMap1[4][4];
     
-    std::vector<std::vector<int>> grp8;
+    std::vector<std::vector<int>> grp8, grp4;
 
     std::vector<int> grp8_i, grp8_j;
 
@@ -60,6 +61,7 @@ int main(){
     }
 
     g8(KMap1, &grp8);
+    g4(KMap1, &grp4);
 
     //Output of initial array
     for(int i=0; i<4; i++){
@@ -70,8 +72,17 @@ int main(){
         std::cout<<std::endl;
     }
 
-    std::cout<<"Group of 8 starts at index:\n";
+    std::cout<<"\nGroup of 8\n";
     for (std::vector<int> i : grp8)
+    {
+        for(int j : i){
+            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
+        }
+        std::cout<<"\n";
+    }
+
+    std::cout<<"\nGroup of 4\n";
+    for (std::vector<int> i : grp4)
     {
         for(int j : i){
             std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
@@ -149,4 +160,69 @@ void g8(int a[][4], std::vector<std::vector<int>>* grp8){
             }
         }
     }
+}
+
+void g4(int a[][4], std::vector<std::vector<int>>* grp4){
+
+    int flag = 0;
+    std::vector<int> grp;
+
+    //grp square
+    for (int i=0; i<4 ; i++){
+        for (int j=0; j<4; j++){
+            if (a[i][j]==1) {
+                if (a[i%4][(j+1)%4]==1 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1) {
+                    grp.push_back(10*(i%4) + (j%4));
+                    grp.push_back(10*((i)%4) + ((j+1)%4));
+                    grp.push_back(10*((i+1)%4) + ((j)%4));
+                    grp.push_back(10*((i+1)%4) + ((j+1)%4));
+                    grp4->push_back(grp);
+                    grp.clear();
+                    flag = 0;
+                    break;
+                }
+                else flag=0;
+            }
+        }
+    }
+    
+    //grp vertical line
+    for (int i=0; i<4 ; i++){
+        for (int j=0; j<4; j++){
+            if (a[i][j]==1) {
+                if (a[i%4][(j)%4]==1 and a[(i+1)%4][(j)%4]==1 and a[(i+2)%4][(j)%4]==1 and a[(i+3)%4][(j)%4]==1) {
+                    grp.push_back(10*((i)%4) + ((j)%4));
+                    grp.push_back(10*((i+1)%4) + ((j)%4));
+                    grp.push_back(10*((i+2)%4) + ((j)%4));
+                    grp.push_back(10*((i+3)%4) + ((j)%4));
+                    grp4->push_back(grp);
+                    grp.clear();
+                    flag = 0;
+                    break;
+                }
+                else flag=0;
+            }
+        }
+    }
+    
+    
+    //grp horizontal line
+    for (int i=0; i<4 ; i++){
+        for (int j=0; j<4; j++){
+            if (a[i][j]==1) {
+                if (a[i%4][(j)%4]==1 and a[(i)%4][(j+1)%4]==1 and a[(i)%4][(j+2)%4]==1 and a[(i)%4][(j+3)%4]==1) {
+                    grp.push_back(10*((i)%4) + ((j)%4));
+                    grp.push_back(10*((i)%4) + ((j+1)%4));
+                    grp.push_back(10*((i)%4) + ((j+2)%4));
+                    grp.push_back(10*((i)%4) + ((j+3)%4));
+                    grp4->push_back(grp);
+                    grp.clear();
+                    flag = 0;
+                    break;
+                }
+                else flag=0;
+            }
+        }
+    }
+    
 }
