@@ -1,10 +1,8 @@
 # K-Map-Solver
-> using c++
-
 A cpp program to solve a **4x4** K-Map.
 
-## ~ WIP ~
-We are still working on the solution.
+### *This is still a WIP*
+<hr>
 
 ## Contributors ✨
 
