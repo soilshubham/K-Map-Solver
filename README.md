@@ -1,8 +1,9 @@
 # K-Map-Solver
 A cpp program to solve a **4x4** K-Map.
 
-### *This is still a WIP*
-<hr>
+```diff
+-  This is still a WIP  -
+```
 
 ## Contributors ✨
 
