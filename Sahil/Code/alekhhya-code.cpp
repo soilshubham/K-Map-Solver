@@ -129,14 +129,14 @@ void g2(int a[][4], std::vector<std::vector<int>>* grp2){
         for (int j=0; j<4; j++){
             if (a[i][j]==1) {
                 if (a[i%4][(j+1)%4]==1) {
-                    grp.push_back(10*(i%4) + abs(j - 2)%4);
-                    grp.push_back(10*(i%4) + abs((j+1) - 2)%4);
+                    grp.push_back(10*(i%4) + (j)%4);
+                    grp.push_back(10*(i%4) + ((j+1))%4);
                     grp2->push_back(grp);
                     grp.clear();
                 }
                 if (a[(i+1)%4][j%4]==1 ) {
-                    grp.push_back(10*((i- 2)%4) + abs(j)%4);
-                    grp.push_back(10*((i+1- 2)%4) + abs(j)%4);
+                    grp.push_back(10*((i)%4) + (j)%4);
+                    grp.push_back(10*((i+1)%4) + (j)%4);
                     grp2->push_back(grp);
                     grp.clear();
                 }
