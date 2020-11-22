@@ -124,7 +124,7 @@ void g2(int a[][4], std::vector<std::vector<int>>* grp2){
     int flag = 0;
     std::vector<int> grp;
 
-    //grp i
+    
     for (int i=0; i<4 ; i++){
         for (int j=0; j<4; j++){
             if (a[i][j]==1) {
