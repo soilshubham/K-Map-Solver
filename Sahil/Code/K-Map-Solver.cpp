@@ -5,6 +5,7 @@
 
 void g8(int a[][4], std::vector<std::vector<int>>*);
 void g4(int a[][4], std::vector<std::vector<int>>*);
+void g2(int a[][4], std::vector<std::vector<int>>*);
 
 struct kMap
 {
@@ -16,9 +17,7 @@ int main(){
 
     int KMap1[4][4];
     
-    std::vector<std::vector<int>> grp8, grp4;
-
-    std::vector<int> grp8_i, grp8_j;
+    std::vector<std::vector<int>> grp8, grp4, grp2;
 
     //Sets all values of matrix 0
     for(int i=0; i<4; i++){
@@ -62,6 +61,7 @@ int main(){
 
     g8(KMap1, &grp8);
     g4(KMap1, &grp4);
+    g2(KMap1, &grp2);
 
     //Output of initial array
     for(int i=0; i<4; i++){
@@ -90,6 +90,14 @@ int main(){
         std::cout<<"\n";
     }
     
+    std::cout<<"\nGroup of 2\n";
+    for (std::vector<int> i : grp2)
+    {
+        for(int j : i){
+            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
+        }
+        std::cout<<"\n";
+    }
 
 }
 
@@ -218,4 +226,28 @@ void g4(int a[][4], std::vector<std::vector<int>>* grp4){
         }
     }
     
+}
+
+void g2(int a[][4], std::vector<std::vector<int>>* grp2){
+
+    std::vector<int> grp;
+
+    for (int i=0; i<4 ; i++){
+        for (int j=0; j<4; j++){
+            if (a[i][j]==1) {
+                if (a[i%4][(j+1)%4]==1) {
+                    grp.push_back(10*(i%4) + (j)%4);
+                    grp.push_back(10*(i%4) + ((j+1))%4);
+                    grp2->push_back(grp);
+                    grp.clear();
+                }
+                if (a[(i+1)%4][j%4]==1 ) {
+                    grp.push_back(10*((i)%4) + (j)%4);
+                    grp.push_back(10*((i+1)%4) + (j)%4);
+                    grp2->push_back(grp);
+                    grp.clear();
+                }
+            }
+        }
+    }
 }
