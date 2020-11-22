@@ -119,7 +119,7 @@ void g4(int* a[], vector<int>* b, vector<int>* c){
 
 
 
-void g2(int a[][4], std::vector<std::vector<int>>* grp8){
+void g2(int a[][4], std::vector<std::vector<int>>* grp2){
 
     int flag = 0;
     std::vector<int> grp;
@@ -131,14 +131,12 @@ void g2(int a[][4], std::vector<std::vector<int>>* grp8){
                 if (a[i%4][(j+1)%4]==1) {
                     grp.push_back(10*(i%4) + abs(j - 2)%4);
                     grp.push_back(10*(i%4) + abs((j+1) - 2)%4);
-                    grp.push_back(10*(i%4) + abs((j+2) - 2)%4);
-                    grp.push_back(10*(i%4) + abs((j+3) - 2)%4);
+                    
                 }
                 if (a[(i+1)%4][j%4]==1 ) {
                     grp.push_back(10*((i- 2)%4) + abs(j)%4);
                     grp.push_back(10*((i+1- 2)%4) + abs(j)%4);
-                    grp.push_back(10*((i+2- 2)%4) + abs(j)%4);
-                    grp.push_back(10*((i+3- 2)%4) + abs(j)%4);
+                    
                 }
                 else {
                     break;
