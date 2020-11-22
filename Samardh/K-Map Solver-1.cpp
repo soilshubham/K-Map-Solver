@@ -102,8 +102,8 @@ void g8(int a[][4], std::vector<std::vector<int>>* grp8){
     //grp i
     for (int i=0; i<4 ; i++){
         for (int j=0; j<4; j++){
-            if (a[i][j]==1) {
-                if (a[i%4][(j+1)%4]==1 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1) {
+            if (a[i][j]==1 or a[i][j] ==2) {
+                if ((a[i%4][(j+1)%4]==1 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1) or (a[i%4][(j+1)%4]==2 and a[(i+1)%4][j%4]==1 and a[(i+1)%4][(j+1)%4]==1)) {
                     flag++;
                 }
                 else {
