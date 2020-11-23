@@ -176,6 +176,49 @@ void elimGrps(std::vector<std::vector<int>> &grp8, std::vector<std::vector<int>>
     grp4 = grp4_T;
 }
 
+void elimGrps2(std::vector<std::vector<int>> &grp8, 
+                std::vector<std::vector<int>> &grp4,
+                std::vector<std::vector<int>> &grp2){
+    
+    std::vector<std::vector<int>> grp2_T;
+
+    std::vector<int>::iterator it; 
+    int flag=0;
+    for(int i=0; i<grp2.size(); i++){
+        for (int j=0; j<2; j++){
+            for (std::vector<int> k : grp2)
+            {
+                it = std::find (k.begin(),k.end(), grp2[i][j]);
+                if (it != k.end()){
+                    flag++;
+                }
+            }
+            for (std::vector<int> k : grp4)
+            {
+                it = std::find (k.begin(),k.end(), grp2[i][j]);
+                if (it != k.end()){
+                    flag++;
+                }
+            }
+            for (std::vector<int> k : grp8)
+            {
+                it = std::find (k.begin(),k.end(), grp2[i][j]);
+                if (it != k.end()){
+                    flag++;
+                }
+            }
+
+            if(flag == 1){
+                grp2_T.push_back(grp2[i]);
+                flag=0;
+                break;
+            }
+            else flag=0;
+        }
+    }
+    grp2 = grp2_T;
+}
+
 
 int main(){
 
@@ -229,7 +272,7 @@ int main(){
     elimGrps(grp8, grp4);
     elimGrps(grp4, grp2);
     elimGrps(grp8, grp2);
-    
+    elimGrps2(grp8, grp4, grp2);
 
     //Output of initial array
     for(int i=0; i<4; i++){
