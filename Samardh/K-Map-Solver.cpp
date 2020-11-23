@@ -212,6 +212,22 @@ void elimtwos(std::vector<std::vector<int>> &grp2){
     }
 }
 
+void display(std::vector<std::vector<int>> &grp8,std::vector<std::vector<int>> &grp4,std::vector<std::vector<int>> &grp2){
+     
+}
+
+void g1(int a[][4], std::vector<int> &grp1){
+    
+    for(int i =0;i<4;i++){
+        for(int j=0;j<4;j++){
+            if(a[i][j] == 1){
+                if(a[(i+1)%4][j%4] !=1 and a[i%4][(j+1)%4] !=1 and a[(i-1)%4][j%4]!= 1 and a[i%4][(j-1)%4]!=1){
+                    grp1.push_back(10*i + j);
+                }
+            }
+        }
+    }
+}
 
 
 int main(){
@@ -219,6 +235,7 @@ int main(){
     int KMap1[4][4];
     
     std::vector<std::vector<int>> grp8, grp4, grp2, grp2_T;
+    std::vector<int> grp1;
 
     //Sets all values of matrix 0
     for(int i=0; i<4; i++){
@@ -263,6 +280,7 @@ int main(){
     g8(KMap1, grp8);
     g4(KMap1, grp4);
     g2(KMap1, grp2);
+    g1(KMap1,grp1);
     elimGrps(grp8, grp4);
     elimGrps(grp4, grp2);
     elimGrps(grp8, grp2);
@@ -302,6 +320,15 @@ int main(){
         for(int j : i){
             std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
         }
+        std::cout<<"\n";
+    }
+    
+     std::cout<<"\nGroup of 1\n";
+    for ( int i : grp1)
+    {
+        
+            std::cout<<"["<<i/10<<", "<<i%10<<"]"<<" , ";
+        
         std::cout<<"\n";
     }
 
