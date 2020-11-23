@@ -1,8 +1,9 @@
 #include<algorithm>
 #include<iostream>
-#include<string.h>
+#include<string>
 #include<vector>
 #include<map>
+
 
 void g8(int a[][4], std::vector<std::vector<int>> &grp8){
 
@@ -213,7 +214,50 @@ void elimtwos(std::vector<std::vector<int>> &grp2){
 }
 
 void display(std::vector<std::vector<int>> &grp8,std::vector<std::vector<int>> &grp4,std::vector<std::vector<int>> &grp2){
+    std::string sahil = "";
+    std::map<int, int> index;
+    {
+        index[0] = 0;
+        index[1] = 1;
+        index[2] = 11;
+        index[3] = 10;
+        index[10] = 100;
+        index[11] = 101;
+        index[12]  = 111;
+        index[13] = 110;
+        index[20] =  1100;
+        index[21] = 1101;
+        index[22] = 1111;
+        index[23] = 1110;
+        index[30] = 1000;
+        index[31] = 1001;
+        index[32] = 1011;
+        index[33] = 1010;
+     }
      
+     for(int i = 0;i< grp8.size();i++){
+         for(int j = 0; j<grp8[i].size();i++){
+             if(index[grp8[i][j]]/1000 == index[grp8[i][j+1]]){
+                 if(index[grp8[i][j+1]]/1000 == index[grp8[i][j+2]]){
+                     if(index[grp8[i][j+2]]/1000 == index[grp8[i][j+3]]){
+                         if(index[grp8[i][j]]/1000 == 1){
+                             
+                         
+                         sahil += "A";
+                         }
+                         else{
+                             sahil+= "A'";
+                         }
+                     }
+                     else break;
+                 }
+                 else break;
+                 
+             }
+             else break;
+         }
+     }
+     std::cout<<sahil;
 }
 
 void g1(int a[][4], std::vector<int> &grp1){
@@ -285,6 +329,7 @@ int main(){
     elimGrps(grp4, grp2);
     elimGrps(grp8, grp2);
     elimtwos(grp2);
+    display(grp8,grp4,grp2);
     
 
     //Output of initial array
