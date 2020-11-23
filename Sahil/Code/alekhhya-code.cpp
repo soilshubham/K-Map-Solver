@@ -147,6 +147,44 @@ void g2(int a[][4], std::vector<std::vector<int>>* grp2){
 
 
 
+// eliminating unwanted groups of 4s
+void elimGrps4(std::vector<std::vector<int>> &grp8,
+                std::vector<std::vector<int>> &grp4){
+    
+    std::vector<std::vector<int>> grp4_T;
+
+    std::vector<int>::iterator it;
+    int flag=0;
+    for(int i=0; i<grp4.size(); i++){
+        for (int j=0; j<4; j++){
+            for (std::vector<int> k : grp4)
+            {
+                it = std::find (k.begin(),k.end(), grp4[i][j]);
+                if (it != k.end()){
+                    flag++;
+                }
+            }
+            for (std::vector<int> k : grp8)
+            {
+                it = std::find (k.begin(),k.end(), grp4[i][j]);
+                if (it != k.end()){
+                    flag++;
+                }
+            }
+
+            if(flag == 1){
+                grp4_T.push_back(grp4[i]);
+                flag=0;
+                break;
+            }
+            else flag=0;
+        }
+    }
+    grp4 = grp4_T;
+}
+
+// call the function in int main() 
+
 
 
 
