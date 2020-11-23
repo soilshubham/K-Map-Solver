@@ -154,7 +154,7 @@ void g2(int a[][4], std::vector<std::vector<int>> &grp2){
     }
 }
 
-void eliminate4(std::vector<std::vector<int>> &grp8, std::vector<std::vector<int>> &grp4){
+void elimGrps(std::vector<std::vector<int>> &grp8, std::vector<std::vector<int>> &grp4){
 
     std::vector<std::vector<int>> grp4_T;
 
@@ -175,6 +175,7 @@ void eliminate4(std::vector<std::vector<int>> &grp8, std::vector<std::vector<int
     }
     grp4 = grp4_T;
 }
+
 
 int main(){
 
@@ -225,7 +226,9 @@ int main(){
     g8(KMap1, grp8);
     g4(KMap1, grp4);
     g2(KMap1, grp2);
-    eliminate4(grp8, grp4);
+    elimGrps(grp8, grp4);
+    elimGrps(grp4, grp2);
+    elimGrps(grp8, grp2);
     
 
     //Output of initial array
@@ -255,13 +258,13 @@ int main(){
         std::cout<<"\n";
     }
     
-    // std::cout<<"\nGroup of 2\n";
-    // for (std::vector<int> i : grp2)
-    // {
-    //     for(int j : i){
-    //         std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
-    //     }
-    //     std::cout<<"\n";
-    // }
+    std::cout<<"\nGroup of 2\n";
+    for (std::vector<int> i : grp2)
+    {
+        for(int j : i){
+            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
+        }
+        std::cout<<"\n";
+    }
 
 }
