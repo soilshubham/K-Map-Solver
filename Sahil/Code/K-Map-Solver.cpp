@@ -296,6 +296,26 @@ int main(){
         getIndex[15] = 22;
     }
     
+    std::map<int, int> getKey;
+    {
+        getKey[0] = 0;
+        getKey[1] = 1;
+        getKey[3] = 2;
+        getKey[2] = 3;
+        getKey[10] = 4;
+        getKey[11] = 5;
+        getKey[13] = 6;
+        getKey[12] = 7;
+        getKey[30] = 8;
+        getKey[31] = 9;
+        getKey[33] = 10;
+        getKey[32] = 11;
+        getKey[20] = 12;
+        getKey[21] = 13;
+        getKey[23] = 14;
+        getKey[22] = 15;
+    }
+
     int noOf1s, input;
 
     //Input
@@ -349,37 +369,44 @@ int main(){
         std::cout<<"\n";
     }
 
+    int c=1;
     std::cout<<"\n\nGroups you should form: \n"; ///alekhhya do it like this, below this <3
     for (std::vector<int> i : grp8)
     {
+        std::cout<<"\n"<<c<<") ";
+        c++;
         for(int j : i){
-            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<", ";
+            std::cout<<getKey[j]<<" ";
         }
         std::cout<<"\n";
     }
 
-    std::cout<<"\nGroup of 4\n";
     for (std::vector<int> i : grp4)
     {
+        std::cout<<"\n"<<c<<") ";
+        c++;
         for(int j : i){
-            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<", ";
+            
+            std::cout<<getKey[j]<<" ";
         }
         std::cout<<"\n";
     }
     
-    std::cout<<"\nGroup of 2\n";
     for (std::vector<int> i : grp2)
     {
+        std::cout<<"\n"<<c<<") ";
+        c++;
         for(int j : i){
-            std::cout<<"["<<j/10<<", "<<j%10<<"]"<<" , ";
+            std::cout<<getKey[j]<<" ";
         }
         std::cout<<"\n";
     }
-
-    std::cout<<"\nGroup of 1\n";
+    
     for (int i : grp1)
     {
-        std::cout<<i<<", ";
+        std::cout<<"\n"<<c<<") ";
+        c++;
+        std::cout<<getKey[i]<<" ";
         std::cout<<"\n";
     }
 
