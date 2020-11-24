@@ -4,14 +4,6 @@
 #include<vector>
 #include<map>
 
-void g16(int a[][4], std::vector<int> &grp16){
-    for (int i=0; i<4 ; i++){
-        for (int j=0; j<4; j++){
-            grp16.push_back(10*(i) + (j));
-        }
-    }
-}
-
 void g8(int a[][4], std::vector<std::vector<int>> &grp8){
 
     int flag = 0;
@@ -329,7 +321,10 @@ int main(){
         KMap1[getIndex[input]/10][getIndex[input]%10] = 1;
     }
 
-    if(noOf1s==16) g16(KMap1, grp16);
+    if(noOf1s == 16){
+        std::cout<<"No Simplification possible";
+        return 0;
+    }
     else if(noOf1s <16 and noOf1s>=8){
         g8(KMap1, grp8);
         g4(KMap1, grp4);
@@ -358,7 +353,7 @@ int main(){
     elimGrps4(grp8, grp4);
     
     
-
+    
     //Output of initial array
     std::cout<<"Your Kmap:\n";
     for(int i=0; i<4; i++){
@@ -370,7 +365,7 @@ int main(){
     }
 
     int c=1;
-    std::cout<<"\n\nGroups you should form: \n"; ///alekhhya do it like this, below this <3
+    std::cout<<"\n\nGroups you should form: \n"; 
     for (std::vector<int> i : grp8)
     {
         std::cout<<"\n"<<c<<") ";
